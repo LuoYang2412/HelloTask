@@ -77,7 +77,6 @@ axios.interceptors.response.use(
       });*/
     }
     if (data.code == 1003) {
-      GlobalParamsUtil.clearGlobalParams();
       router.replace({
         name: "Login",
       });
@@ -99,18 +98,23 @@ axios.interceptors.response.use(
         if (data.code === 401) {
           // 登录验证
           //做了个示例跳转项目中登录，并记录下相对路径
-          refreshToken(
-            GlobalParamsUtil.getGlobalParams(
-              GlobalParamsUtil.KEY.AUTH_TOKEN_OBJECT
-            ).refresh_token
-          ).then((res) => {
-            if (res.success) {
-              GlobalParamsUtil.saveGlobalParams(
-                GlobalParamsUtil.KEY.AUTH_TOKEN_OBJECT,
-                res.data
-              );
-            }
-          });
+          let refresh_token = GlobalParamsUtil.getGlobalParams(
+            GlobalParamsUtil.KEY.AUTH_TOKEN_OBJECT
+          )?.refresh_token;
+          if (refresh_token) {
+            refreshToken(refresh_token).then((res) => {
+              if (res.success) {
+                GlobalParamsUtil.saveGlobalParams(
+                  GlobalParamsUtil.KEY.AUTH_TOKEN_OBJECT,
+                  res.data
+                );
+              }
+            });
+          } else {
+            router.replace({
+              name: "Login",
+            });
+          }
         } else {
           if (data.msg) {
             msg = data.msg;
