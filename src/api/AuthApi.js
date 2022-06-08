@@ -3,8 +3,8 @@
  * @Date: 2021/7/14 3:34 下午
  * @Description: 用户验证API
  */
-import axios from "@/axios/index";
 import Urls from "@/const/Urls";
+import axios from "axios";
 
 const clientId = "wap123456";
 const grantType = "account_wap";

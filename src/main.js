@@ -3,7 +3,7 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import "./vant";
-import "./mock/index";
+import "./axios";
 
 Vue.config.productionTip = false;
 

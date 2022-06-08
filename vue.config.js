@@ -1,12 +1,12 @@
 module.exports = {
   productionSourceMap: false,
-  
+
   lintOnSave: false,
-  
+
   // devServer: {
   //   proxy: "http://www.api-server.com/",
   // },
-  
+
   pwa: {
     name: "HelloTask",
     manifestOptions: {
@@ -15,8 +15,5 @@ module.exports = {
     },
     themeColor: "#6AC2E4",
     msTileColor: "#6AC2E4",
-  },
-  configureWebpack: {
-    devtool: "source-map",
   },
 };
