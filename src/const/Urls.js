@@ -4,16 +4,14 @@
  * @Description: 公共的URL常量
  */
 export default {
-  SERVER_URL: "http://www.api-server.com",
-  
   auth: {
     //登录
-    login: "/auth/authentication/login",
+    login: "auth/login",
     //验证码
-    code: "/code",
+    code: "auth/code",
   },
   user: {
-    info: "/admin/user/info",
+    info: "user/info",
   },
 
   task: {

@@ -5,14 +5,13 @@
  */
 import axios from "axios";
 import { Toast } from "vant";
-import Urls from "@/const/Urls";
 import router from "@/router/index.js";
 import GlobalParamsUtil from "@/utils/GlobalParamsUtil";
 import { TIME_OUT } from "@/const/Other";
 import { refreshToken } from "@/api/AuthApi";
 
 // 默认超时设置
-axios.defaults.baseURL = Urls.SERVER_URL;
+axios.defaults.baseURL = serverConfig.SERVER_URL;
 axios.defaults.timeout = TIME_OUT;
 
 //没有响应的请求数量

@@ -28,7 +28,7 @@ export function login(data) {
  */
 export function getCodeUrl(randomStr) {
   return (
-    Urls.SERVER_URL +
+    serverConfig.SERVER_URL +
     axios.getUri({
       url: Urls.auth.code,
       params: {
