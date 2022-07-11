@@ -3,8 +3,8 @@
  * @Date: 2021/7/14 3:34 下午
  * @Description: 项目API
  */
-import { PAGE_SIZE } from "@/const/Other";
-import Urls from "@/const/Urls";
+
+import { PAGE_SIZE, Urls } from "@/const";
 import axios from "axios";
 
 //获取任务列表

@@ -62,13 +62,13 @@
 </template>
 
 <script>
-import {Button, Form, Image as VanImage} from "vant";
+import { Button, Form, Image as VanImage } from "vant";
 import NavBarStore from "@/components/NavBarComponent/store/NavBarStore";
 import Home from "./Home";
-import {getCodeUrl, login} from "@/api/AuthApi";
-import {encryption, randomLenNum} from "@/utils/StringUtil";
-import GlobalParamsUtil from "@/utils/GlobalParamsUtil";
-import {getUserInfo} from "@/api/UserApi";
+import { getCodeUrl, login } from "@/api/AuthApi";
+import { encryption, randomLenNum } from "@/utils/StringUtil";
+import { getUserInfo } from "@/api/UserApi";
+import { USER_OBJECT } from "@/const";
 
 export default {
   name: "Login",
@@ -107,10 +107,6 @@ export default {
       });
       login(user).then((res) => {
         if (res.success) {
-          GlobalParamsUtil.saveGlobalParams(
-            GlobalParamsUtil.KEY.AUTH_TOKEN_OBJECT,
-            res.data
-          );
           this.$toast.success(res.msg);
           this.getUserInfo();
         } else {
@@ -122,10 +118,7 @@ export default {
     getUserInfo() {
       getUserInfo().then((res) => {
         if (res.success) {
-          GlobalParamsUtil.saveGlobalParams(
-            GlobalParamsUtil.KEY.USER_OBJECT,
-            res.data
-          );
+          sessionStorage.setItem(USER_OBJECT, res.data);
           setTimeout(() => {
             Home.goIn(this);
           }, 200);

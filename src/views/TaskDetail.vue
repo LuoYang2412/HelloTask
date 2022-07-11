@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import GlobalParamsUtil from "@/utils/GlobalParamsUtil";
 import NavBarStore from "@/components/NavBarComponent/store/NavBarStore";
+import { TASK_NAME, TASK_OBJ } from "@/const";
 
 export default {
   name: "TaskDetail",
@@ -15,16 +15,14 @@ export default {
     };
   },
   created() {
-    this.taskName = GlobalParamsUtil.getGlobalParams(
-      GlobalParamsUtil.KEY.TASK_NAME
-    );
+    this.taskName = sessionStorage.getItem(TASK_NAME);
     NavBarStore.reSetNavBar();
     NavBarStore.setTitle(this.taskName);
   },
   goIn(vm, taskName) {
     vm.$router.push({
       name: "TaskDetail",
-      params: {[GlobalParamsUtil.KEY.TASK_OBJ]: taskName},
+      params: { [TASK_OBJ]: taskName },
     });
   },
 };

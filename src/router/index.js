@@ -6,7 +6,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
-import GlobalParamsUtil from "@/utils/GlobalParamsUtil";
 
 Vue.use(VueRouter);
 
@@ -38,19 +37,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // 把参数存入全局,防止刷新页面丢失
-  Object.keys(to.params).forEach((key) => {
-    GlobalParamsUtil.saveGlobalParams(key, to.params[key]);
-  });
-  if (to.name !== "Login") {
-    if (
-      GlobalParamsUtil.getGlobalParams(GlobalParamsUtil.KEY.AUTH_TOKEN_OBJECT)
-    ) {
-      next();
-    } else {
-      next({ name: "Login" });
-    }
-  } else {
-    next();
+  for (let [key, value] of Object.entries(to.params)) {
+    sessionStorage.setItem(key, value);
   }
 });
 

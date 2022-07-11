@@ -9,10 +9,9 @@
 // @ is an alias to /src
 
 import NavBarStore from "@/components/NavBarComponent/store/NavBarStore";
-import GlobalParamsUtil from "@/utils/GlobalParamsUtil";
 import TaskList from "./TaskList";
 import TaskMap from "./TaskMap";
-import { getUserInfo } from "@/api/UserApi";
+import { USER_OBJECT } from "@/const";
 
 export default {
   name: "Home",
@@ -25,9 +24,7 @@ export default {
   },
   created() {},
   mounted() {
-    let userName = GlobalParamsUtil.getGlobalParams(
-      GlobalParamsUtil.KEY.USER_OBJECT
-    )?.userName;
+    let userName = JSON.parse(sessionStorage.getItem(USER_OBJECT))?.userName;
 
     NavBarStore.reSetNavBar();
     NavBarStore.setNavBarLeftShow(false);

@@ -3,8 +3,8 @@
  * @Date: 2021/7/14 3:34 下午
  * @Description: 用户验证API
  */
-import Urls from "@/const/Urls";
 import axios from "axios";
+import { Urls } from "@/const";
 
 const clientId = "wap123456";
 const grantType = "account_wap";
@@ -14,8 +14,7 @@ export function login(data) {
   data.grantType = grantType;
   return axios.post(Urls.auth.login, null, {
     headers: {
-      isToken: false,
-      Authorization: "Basic 123456==",
+      noToken: true,
     },
     params: data,
   });
@@ -42,8 +41,7 @@ export async function refreshToken(refreshToken) {
   const grantType = "refresh_token";
   return axios.post(Urls.auth.login, null, {
     headers: {
-      isToken: false,
-      Authorization: "Basic 123456==",
+      noToken: true,
     },
     params: { refreshToken, grantType, clientId },
   });
